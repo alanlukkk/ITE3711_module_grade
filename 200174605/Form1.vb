@@ -10,7 +10,7 @@
 
     Private Sub btnComfirm_Click(sender As Object, e As EventArgs) Handles btnComfirm.Click
         If Not IsNumeric(txtTextMark.Text) Or Not IsNumeric(txtQuizMark.Text) Or Not IsNumeric(txtProjectMark.Text) Or Not IsNumeric(txtExamMark.Text) Then
-            MessageBox.Show("Error1")
+            MessageBox.Show("Error")
             Return
         ElseIf (txtTextMark.Text Or txtQuizMark.Text Or txtProjectMark.Text Or txtExamMark.Text) > 100 Then
             MessageBox.Show("Error")
