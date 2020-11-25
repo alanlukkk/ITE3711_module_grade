@@ -8,6 +8,18 @@
         lstRecord.Items.Clear()
         marks.Clear()
         avg.Clear()
+        txtTextMark.Clear()
+        txtQuizMark.Clear()
+        txtProjectMark.Clear()
+        txtExamMark.Clear()
+        txtCAMark.Clear()
+        txtModuleMark.Clear()
+        txtModuleGrade.Clear()
+        txtRemarks.Clear()
+        txtNumberofStudents.Clear()
+        txtModuleAverage.Clear()
+        txtCountofA.Clear()
+        txtCountOfF.Clear()
     End Sub
 
     Private Sub btnComfirm_Click(sender As Object, e As EventArgs) Handles btnComfirm.Click
