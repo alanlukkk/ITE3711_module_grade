@@ -6,6 +6,8 @@
     Private Sub BtnClearAll_Click(sender As Object, e As EventArgs) Handles btnClearAll.Click
         txtName.Clear()
         lstRecord.Items.Clear()
+        marks.Clear()
+        avg.Clear()
     End Sub
 
     Private Sub btnComfirm_Click(sender As Object, e As EventArgs) Handles btnComfirm.Click
