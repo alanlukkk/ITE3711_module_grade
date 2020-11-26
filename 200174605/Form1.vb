@@ -20,6 +20,7 @@
         txtModuleAverage.Clear()
         txtCountofA.Clear()
         txtCountOfF.Clear()
+        txtFind.Clear()
     End Sub
 
     Private Sub btnComfirm_Click(sender As Object, e As EventArgs) Handles btnComfirm.Click
@@ -65,7 +66,6 @@
         End If
         lstRecord.Items.Add(txtName.Text)
         check()
-
     End Sub
 
     Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
@@ -106,16 +106,12 @@
         Next
         sum /= avg.Count
         txtModuleAverage.Text = sum
-
+ txtNumberofStudents.Text = lstRecord.Items.Count
     End Sub
 
 
 
     Private Sub btnShowStatisitics_Click(sender As Object, e As EventArgs) Handles btnShowStatisitics.Click
-
         check()
-
-        txtNumberofStudents.Text = lstRecord.Items.Count
-
-    End Sub
+End Sub
 End Class
