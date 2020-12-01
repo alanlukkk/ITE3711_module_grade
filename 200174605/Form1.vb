@@ -1,15 +1,16 @@
 ﻿Public Class form1
-
+    ' create arraylist to array the value
     Dim CountAF As ArrayList = New ArrayList()
     Dim avg As ArrayList = New ArrayList()
     Dim FindName As ArrayList = New ArrayList()
 
     Private Sub BtnClearAll_Click(sender As Object, e As EventArgs) Handles btnClearAll.Click
-        txtName.Clear()
-        lstRecord.Items.Clear()
+        'clear all value of  textbox,arraylist and listbox
         CountAF.Clear()
         FindName.Clear()
         avg.Clear()
+        lstRecord.Items.Clear()
+        txtName.Clear()
         txtTextMark.Clear()
         txtQuizMark.Clear()
         txtProjectMark.Clear()
@@ -26,7 +27,7 @@
     End Sub
 
     Private Sub btnComfirm_Click(sender As Object, e As EventArgs) Handles btnComfirm.Click
-        HiddenStat()
+        'check the entry value are resonable
         If txtName.Text.Trim.Length = 0 Then
             MessageBox.Show("Please input the Name")
             Return
@@ -41,6 +42,7 @@
             MessageBox.Show("Mark must be must bigger than or not equal to 0")
             Return
         End If
+        'declare and calculate the input value
         Dim Test As Double = CDbl(txtTextMark.Text)
         Dim Quizzes As Double = CDbl(txtQuizMark.Text)
         Dim Project As Double = CDbl(txtProjectMark.Text)
@@ -48,8 +50,9 @@
         Dim CA_Mark As Double = Test * 0.5 + Quizzes * 0.2 + Project * 0.3
         txtCAMark.Text = CStr(CA_Mark)
         Dim Module_Mark As Double = CA_Mark * 0.4 + Exam * 0.6
-        avg.Add(Module_Mark)
         txtModuleMark.Text = CStr(Module_Mark)
+
+        ' calculate the module grade
         Dim G As String = " "
         If CA_Mark < 40 And Exam < 40 Then
             G = "F"
@@ -60,25 +63,33 @@
         ElseIf Module_Mark >= 40 Then
             G = "C"
         End If
-        CountAF.Add(G)
         txtModuleGrade.Text = G
-
+        'select case of remarks
         Select Case G
-            Case G = "A" Or G = "B" Or G = "C"
+            Case "A"
+                txtRemarks.Text = "Pass"
+            Case "B"
+                txtRemarks.Text = "Pass"
+            Case "C"
                 txtRemarks.Text = "Pass"
             Case "F"
                 If Module_Mark >= 30 Then
                     txtRemarks.Text = "Resit Exam"
+                Else
+                    txtRemarks.Text = "Restudy"
                 End If
-            Case Else
-                txtRemarks.Text = "Restudy"
         End Select
+        'add then name to listbox
+        'Make sure that the record will not be found due to uppercase/lowercase/space
         lstRecord.Items.Add(txtName.Text.Trim.ToUpper)
-        check()
+        'add the calculated value into arraylist
         FindName.Add(txtName.Text.Trim.ToUpper)
+        avg.Add(Module_Mark)
+        CountAF.Add(G)
     End Sub
 
     Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
+        'using arraylist method to find name
         For Each item As String In FindName
             If txtFind.Text.Trim.ToUpper = item Then
                 MessageBox.Show(item & " is on line" & CStr(FindName.IndexOf(item) + 1) & " of the list")
@@ -86,7 +97,7 @@
                 MessageBox.Show("student not found")
             End If
         Next
-        '#alternative method
+        '#alternative method of find name
         '  Dim i As Integer
         '   Dim n As Integer = -1
         '  Dim keyword As String = txtFind.Text.Trim.ToUpper
@@ -103,20 +114,9 @@
         'MessageBox.Show("student not found")
         ' End If
     End Sub
-    Public Sub HiddenStat()
-        txtCountofA.Visible = False
-        txtCountOfF.Visible = False
-        txtModuleAverage.Visible = False
-        txtNumberofStudents.Visible = False
-    End Sub
-    Public Sub ShowStat()
-        txtCountofA.Visible = True
-        txtCountOfF.Visible = True
-        txtModuleAverage.Visible = True
-        txtNumberofStudents.Visible = True
-    End Sub
-
-    Public Sub check()
+    Private Sub btnShowStatisitics_Click(sender As Object, e As EventArgs) Handles btnShowStatisitics.Click
+        'show and calculate all the record of module statistics
+        'using arrylist method to calculate the count of A/F
         Dim countOfA As Integer = 0
         Dim countOfF As Integer = 0
         For Each item As String In CountAF
@@ -129,6 +129,7 @@
         txtCountofA.Text = countOfA
         txtCountOfF.Text = countOfF
         Dim sum As Double = 0.0
+        'using arrylist method to calculate the average mark
         For Each item As Double In avg
             sum += item
         Next
@@ -139,9 +140,5 @@
             txtModuleAverage.Text = 0
         End If
         txtNumberofStudents.Text = lstRecord.Items.Count
-    End Sub
-    Private Sub btnShowStatisitics_Click(sender As Object, e As EventArgs) Handles btnShowStatisitics.Click
-        check()
-        ShowStat()
     End Sub
 End Class
