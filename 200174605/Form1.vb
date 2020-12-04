@@ -90,28 +90,33 @@
 
     Private Sub btnFind_Click(sender As Object, e As EventArgs) Handles btnFind.Click
         'using arraylist method to find name
+        Dim name As String = "name"
         For Each item As String In FindName
             If txtFind.Text.Trim.ToUpper = item Then
-                MessageBox.Show(item & " is on line" & CStr(FindName.IndexOf(item) + 1) & " of the list")
-            Else
-                MessageBox.Show("student not found")
+                Name = txtFind.Text.Trim.ToUpper
+                Exit For
             End If
         Next
+        If Name <> "name" Then
+            MessageBox.Show(Name & " is on line" & CStr(FindName.IndexOf(Name) + 1) & " of the list")
+        Else
+            MessageBox.Show("student not found")
+        End If
         '#alternative method of find name
         '  Dim i As Integer
-        '   Dim n As Integer = -1
-        '  Dim keyword As String = txtFind.Text.Trim.ToUpper
-        '  For i = 0 To lstRecord.Items.Count - 1 Step 1
-        '  If CStr(lstRecord.Items(i)) = keyword Then
-        ' n = i + 1
-        ' Select Case keyword
+        ' Dim n As Integer = -1
+        ' Dim keyword As String = txtFind.Text.Trim.ToUpper
+        'For i = 0 To lstRecord.Items.Count - 1 Step 1
+        'If CStr(lstRecord.Items(i)) = keyword Then
+        'n = i + 1
+        'Select Case keyword
         'Case keyword
         'MessageBox.Show(keyword & " is on line" & i + 1 & " of the list")
         'End Select
         'End If
-        ' Next
-        ' If n = -1 Then
-        'MessageBox.Show("student not found")
+        'Next
+        'If n = -1 Then
+        ' MessageBox.Show("student not found")
         ' End If
     End Sub
     Private Sub btnShowStatisitics_Click(sender As Object, e As EventArgs) Handles btnShowStatisitics.Click
