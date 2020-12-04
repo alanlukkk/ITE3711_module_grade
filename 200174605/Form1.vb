@@ -35,10 +35,10 @@
         If Not IsNumeric(txtTextMark.Text) Or Not IsNumeric(txtQuizMark.Text) Or Not IsNumeric(txtProjectMark.Text) Or Not IsNumeric(txtExamMark.Text) Then
             MessageBox.Show("Please input the Number")
             Return
-        ElseIf (txtTextMark.Text Or txtQuizMark.Text Or txtProjectMark.Text Or txtExamMark.Text) > 100 Then
+        ElseIf txtTextMark.Text > 100 Or txtQuizMark.Text > 100 Or txtProjectMark.Text > 100 Or txtExamMark.Text > 100 Then
             MessageBox.Show("Mark must be smaller than or not equal to 100")
             Return
-        ElseIf (txtTextMark.Text Or txtQuizMark.Text Or txtProjectMark.Text Or txtExamMark.Text) < 0 Then
+        ElseIf txtTextMark.Text < 0 Or txtQuizMark.Text < 0 Or txtProjectMark.Text < 0 Or txtExamMark.Text < 0 Then
             MessageBox.Show("Mark must be must bigger than or not equal to 0")
             Return
         End If
